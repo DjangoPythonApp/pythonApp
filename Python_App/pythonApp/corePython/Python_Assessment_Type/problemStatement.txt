@@ -1,0 +1,16 @@
+Employee Project Management System:
+-----------------------------------
+
+A software organization wants to develop a console-based Employee Project Management System using Python. 
+The system should be designed using Object-Oriented Programming (OOP) principles and should manage departments, employees, and their project work.
+
+The application must allow users to:
+    Create and manage departments
+    Register employees under departments
+    Assign employees to projects and track working hours
+    Generate project summaries and identify budget overruns
+    and 
+    
+--- PROJECT SUMMARY ---
+Project: AI Automation | Total Hours: 180 | BUDGET EXCEEDED
+Project: Backend API | Total Hours: 120 | Within Budget
