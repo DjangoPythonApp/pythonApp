@@ -1,0 +1,10 @@
+batisteo.vscode-django
+bibhasdn.django-html
+bigonesystems.django
+eamodio.gitlens
+github.copilot-chat
+ms-python.debugpy
+ms-python.python
+ms-python.vscode-pylance
+ms-python.vscode-python-envs
+thebarkman.vscode-djaneiro
