@@ -103,7 +103,7 @@ USE_I18N = True
 USE_TZ = True
 
 # --------------- Changes for deployment ---------------
-FORCE_SCRIPT_NAME = '/userinput'
+# FORCE_SCRIPT_NAME = '/userinput'
 
 STATIC_URL = '/userinput/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
