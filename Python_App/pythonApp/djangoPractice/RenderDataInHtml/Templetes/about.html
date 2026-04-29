@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            color: #2a2a2a;
+        }
+        .hero {
+            background: linear-gradient(135deg, #6b5b95, #b8a9c9);
+            color: #fff;
+            padding: 60px 24px;
+            text-align: center;
+        }
+        .hero h1 {
+            margin: 0;
+            font-size: 3rem;
+            letter-spacing: 1px;
+        }
+        .hero p {
+            max-width: 680px;
+            margin: 18px auto 0;
+            line-height: 1.7;
+            opacity: 0.94;
+        }
+        .container {
+            max-width: 980px;
+            margin: 36px auto;
+            padding: 0 24px 40px;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 18px;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+        .card h2 {
+            margin-top: 0;
+            color: #4f3d6f;
+        }
+        .card p {
+            line-height: 1.75;
+            color: #4a4a4a;
+        }
+        .profile-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+            margin-top: 20px;
+        }
+        .profile-item {
+            background: #f3ecff;
+            border-radius: 14px;
+            padding: 18px;
+            text-align: center;
+            color: #3b2a55;
+        }
+        .profile-item strong {
+            display: block;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+        }
+        .profile-item span {
+            display: block;
+            font-size: 1.1rem;
+            margin-top: 4px;
+        }
+        .footer {
+            text-align: center;
+            padding: 22px 24px;
+            color: #666;
+            font-size: 0.95rem;
+        }
+        @media (max-width: 640px) {
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <h1>About Me</h1>
+        <p>Welcome to my story. I am a passionate developer and lifelong learner who enjoys building clean, modern web experiences. This page shares who I am, what I love, and the skills I bring to every project.</p>
+    </section>
+    <div class="container">
+        <div class="card">
+            <h2>Who I Am</h2>
+            <p>I am a motivated individual with a strong interest in web development, design, and problem solving. I enjoy working with Django, Python, and frontend technologies to create responsive, user-friendly applications. My goal is to keep learning while producing polished and reliable work.</p>
+        </div>
+        <div class="card">
+            <h2>What I Do</h2>
+            <p>I build web pages and applications with clean layouts, thoughtful typography, and consistent styling. My focus is on creating easy-to-use interfaces, writing maintainable code, and delivering solutions that look great across devices.</p>
+            <div class="profile-list">
+                <div class="profile-item">
+                    <strong>Experience</strong>
+                    <span>Web Development</span>
+                </div>
+                <div class="profile-item">
+                    <strong>Tools</strong>
+                    <span>Django, Python, HTML, CSS</span>
+                </div>
+                <div class="profile-item">
+                    <strong>Approach</strong>
+                    <span>Clean, simple, functional</span>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <h2>My Values</h2>
+            <p>I believe in clarity, consistency, and thoughtful design. Every project is an opportunity to improve, and I enjoy collaborating with others to create meaningful results. Attention to detail and a positive attitude help me stay focused and productive.</p>
+        </div>
+    </div>
+    <footer class="footer">
+        Built with care and a fresh purple-inspired palette.
+    </footer>
+</body>
+</html>
