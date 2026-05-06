@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'about.css' %}">
+<link rel="stylesheet" href="{% static 'form.css' %}">
+<linl rel="stylesheet" href="{% static 'edit.css' %}">
+
+<div class="main-container">   <!-- 🔥 IMPORTANT -->
+
+    <!-- FORM -->
+    <div class="form-container">
+        <h2>User Information</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" name="name" placeholder="Enter your name" required>
+            </div>
+
+            <div class="form-group">
+                <label>Age:</label>
+                <input type="number" name="age" placeholder="Enter your age" required>
+            </div>
+
+            <div class="form-group">
+                <label>Email (Gmail):</label>
+                <input type="email" name="email" placeholder="Enter your Gmail" required>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <!-- RESULT -->
+    {% if name and age and email %}
+   <div class="result">
+    <h3 class="result-title">Submitted Data:</h3>
+
+    <table class="result-table">
+        <tr>
+            <th>Name</th>
+            <td>{{ name }}</td>
+        </tr>
+        <tr>
+            <th>Age</th>
+            <td>{{ age }}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>{{ email }}</td>
+        </tr>
+    </table>
+
+    <div class="btn-group">
+        <button class="btn edit-btn">
+            <a color="white" href="{% url 'edit' name age email %}">Edit</a>
+        </button>
+        <button class="btn delete-btn">
+            <a color="white" href="{% url 'delete' %}">Delete</a>
+        </button>
+    </div>
+</div>
+    {% endif %}
+
+</div>
+
+{% endblock %}

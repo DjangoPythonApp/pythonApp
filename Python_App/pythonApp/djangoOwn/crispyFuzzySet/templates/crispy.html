@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fuzzy Set Support</title>
+    <link rel="stylesheet" href="{% static 'css/crispy.css' %}">
+</head>
+
+<body>
+
+<h2>Compute Support (Crisp) of a Fuzzy Set</h2>
+
+<div class="box">
+    <form method="post">
+        {% csrf_token %}
+        <label>Enter number of elements:</label><br>
+        <input type="number" name="num" required>
+        <br><br>
+        <button class="blue">Generate Input Fields</button>
+    </form>
+</div>
+
+{% if n %}
+<div class="box">
+    <form method="post">
+        {% csrf_token %}
+        <input type="hidden" name="num" value="{{ n }}">
+
+        <h3>Enter Elements and Membership Values</h3>
+
+        {% for i in ""|center:n %}
+            <input name="e{{ forloop.counter0 }}" placeholder="Element {{ forloop.counter }}">
+            <input name="m{{ forloop.counter0 }}" placeholder="Membership (0 to 1)">
+            <br>
+        {% endfor %}
+
+        <br>
+        <button class="green">Compute Support</button>
+    </form>
+</div>
+{% endif %}
+
+{% if fuzzy %}
+<div class="box">
+    <h3>Fuzzy Set:</h3>
+    <p>{{ fuzzy }}</p>
+
+    <h3>Support (Crisp Set):</h3>
+    <p>{ {{ support|join:", " }} }</p>
+</div>
+{% endif %}
+
+</body>
+</html>
