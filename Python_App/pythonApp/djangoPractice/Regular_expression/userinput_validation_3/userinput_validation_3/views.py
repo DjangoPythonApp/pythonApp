@@ -2,6 +2,9 @@ from django.shortcuts import render,  HttpResponse
 import re
 def index(request: HttpRequest):
 
+    ip = request.META.get('REMOTE_ADDR')
+    print("IP Address: ",ip)
+
     
     error=''
     success=''
@@ -9,6 +12,7 @@ def index(request: HttpRequest):
 
     if request.method == 'POST':
         username = request.POST.get('username')
+        
         if username == '':
             error = 'Username is required'
 
