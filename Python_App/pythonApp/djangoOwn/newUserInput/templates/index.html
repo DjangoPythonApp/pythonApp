@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indext</title>
+</head>
+<body>
+    <div>
+        <form method='POST'>
+           {% csrf_token %}
+           <lable for='fname'>First name:</label>
+            <input type='text' name='fname' placeholder='Enter the first name'>
+             <lable for='lname'>Last name:</label>
+            <input type='text' name='lname' placeholder='Enter the last name'>
+             <lable for='age'>Age:</label>
+            <input type='text' name='age' placeholder='Enter the age'>
+            <input type="submit">
+        </form>
+    </div>
+ 
+     {% if items %}
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>First Name</th>
+              
+               
+                    <th>Last Name</th>
+              
+              
+                    <th>Age</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+ 
+                    <td>{{ item.0 }}</td>
+              
+               
+                    <td>{{ item.1 }}</td>
+              
+              
+                    <td>{{ item.2 }}</td>
+
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+
+    {% if message %}
+    <p> {{ message }}</p>
+    {% endif %}
+</body>
+</html>
