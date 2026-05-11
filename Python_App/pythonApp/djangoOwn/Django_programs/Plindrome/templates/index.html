@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome Checker</title>
+
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+    <div class="container mt-5">
+
+        <div class="card shadow p-4 mx-auto" style="max-width: 500px;">
+
+            <h1 class="text-center mb-4">Palindrome Checker</h1>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label class="form-label">
+                        Enter a Number
+                    </label>
+
+                    <input 
+                        type="text"
+                        name="num"
+                        class="form-control"
+                        placeholder="Enter a number"
+                    >
+                </div>
+
+                {% if error %}
+                    <div class="alert alert-danger">
+                        {{ error }}
+                    </div>
+                {% endif %}
+
+                <div class="d-grid">
+                    <input 
+                        type="submit"
+                        value="Check Palindrome"
+                        class="btn btn-primary"
+                    >
+                </div>
+            </form>
+
+            {% if number %}
+                <div class="alert alert-success mt-4 text-center">
+                    <h4>{{ number }}</h4>
+                </div>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</body>
+</html>

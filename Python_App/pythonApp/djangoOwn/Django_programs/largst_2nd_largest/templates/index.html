@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>Largest and Second Largest</title>
+</head>
+<body class="bg-light">
+
+    <div class="container mt-5">
+
+        <div class="card shadow p-4">
+
+            <h1 class="text-center mb-4">
+                Largest and Second Largest
+            </h1>
+
+            <!-- First Form -->
+            <form method="POST" class="mb-4">
+
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label class="form-label">
+                        Enter the Number of Elements
+                    </label>
+
+                    <input 
+                        type="number" 
+                        name="no"
+                        class="form-control"
+                        required
+                    >
+                </div>
+
+                <button class="btn btn-primary w-100">
+                    Generate Input Fields
+                </button>
+
+            </form>
+
+            <!-- Second Form -->
+            {% if no %}
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                <input type="hidden" name="no" value="{{ no }}">
+
+                <h4 class="mb-3">
+                    Enter Elements
+                </h4>
+
+                {% for i in ""|center:no %}
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Element {{ forloop.counter }}
+                    </label>
+
+                    <input 
+                        type="number"
+                        name="number_{{ forloop.counter0 }}"
+                        class="form-control"
+                        required
+                    >
+
+                </div>
+
+                {% endfor %}
+
+                <button class="btn btn-success w-100" type="submit">
+                    Submit
+                </button>
+
+            </form>
+
+            {% endif %}
+
+            <!-- Result -->
+            {% if largest and second_largest %}
+
+            <div class="alert alert-info mt-4">
+
+                <h4>
+                    Largest: {{ largest }}
+                </h4>
+
+                <h4>
+                    Second Largest: {{ second_largest }}
+                </h4>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+</head>
+<body>
+    <h4>Edit section</h4>
+    <div>
+        <P>My data :{{ item.0 }}</p>
+        <form method="POST">
+            {% csrf_token %}
+           
+            <input type='text' name='name' value="{{ item.1 }}"><br>
+            <input type='text' name='age' value="{{ item.2 }}"><br>
+            <input type='text' name='email' value="{{ item.3 }}"><br>
+            <input type='submit'>
+
+        </form>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swap Two Numbers</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+
+                <div class="card shadow p-4">
+                    <h2 class="text-center mb-4">Swap Two Numbers</h2>
+
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <!-- First Number -->
+                        <div class="mb-3">
+                            <label class="form-label">First Number</label>
+                            <input 
+                                type="number" 
+                                class="form-control" 
+                                name="num1" 
+                                placeholder="Enter first number"
+                                required
+                            >
+                        </div>
+
+                        <!-- Second Number -->
+                        <div class="mb-3">
+                            <label class="form-label">Second Number</label>
+                            <input 
+                                type="number" 
+                                class="form-control" 
+                                name="num2" 
+                                placeholder="Enter second number"
+                                required
+                            >
+                        </div>
+
+                        <!-- Button -->
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">
+                                Swap Numbers
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Result -->
+                    {% if no1 and no2 %}
+                    <div class="alert alert-success mt-4">
+                        <h5>After Swapping:</h5>
+                        <p><strong>First Number:</strong> {{ no1 }}</p>
+                        <p><strong>Second Number:</strong> {{ no2 }}</p>
+                    </div>
+                    {% endif %}
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

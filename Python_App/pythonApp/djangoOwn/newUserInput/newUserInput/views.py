@@ -93,6 +93,7 @@ def delete_view(request: HttpRequest,item_id):
 
     for item in item_list:
         if item[0] != item_id:
+            print(item[0])
             new_list.append(item)
 
     for i in range(len(new_list)):
