@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+
+    <title>Indext</title>
+</head>
+<body>
+    <div>
+        <form method='POST'>
+           {% csrf_token %}
+           <lable for='fname'>Name:</label>
+            <input type='text' name='fname' placeholder='Enter the first name'>
+            <lable for='age'>Age:</label>
+            <input type='text' name='age' placeholder='Enter the age'>
+            <lable for='email'>Email:</label>
+            <input type='text' name='email' placeholder='Enter the email'>
+            <input type="submit">
+        </form>
+    </div>
+ 
+     {% if items %}
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID:</th>
+                    <th>First Name</th>
+              
+               
+                    <th>Last Name</th>
+              
+              
+                    <th>Age</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+ 
+                    <td>{{ item.0 }}</td>
+              
+               
+                    <td>{{ item.1 }}</td>
+              
+              
+                    <td>{{ item.2 }}</td>
+
+                    <td>{{ item.3 }}</td>
+
+                    <td><a> <i class="fa-regular fa-pen-to-square" style="color: rgb(14, 13, 13);"></i></a></td>
+
+                    <td> <a> <i class="fa-regular fa-trash-can" style="color: rgb(215, 26, 26);"></i></a></td>   
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+
+    {% if message %}
+    <p> {{ message }}</p>
+    {% endif %}
+</body>
+</html>

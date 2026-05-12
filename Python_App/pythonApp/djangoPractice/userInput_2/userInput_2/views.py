@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse
+from .decorator import validate_number
 
 item_list = []
 pos:int = 0
 status:bool = True
 
+@validate_number
 def index(request : HttpRequest):
 
     global pos
@@ -13,7 +15,7 @@ def index(request : HttpRequest):
 
     if request.method == 'POST':
         name:str = request.POST.get('name')
-        age:str = request.POST.get('age')
+        age:int = int(request.POST.get('age'))
         email:str = request.POST.get('email')
         
 
@@ -55,7 +57,7 @@ def edit(request:HttpRequest, item_id):
 
     if request.method == 'POST':
         name = request.POST.get('name')
-        age = request.POST.get('age')
+        age :int = int(request.POST.get('age'))
         email = request.POST.get('email')
 
         updated_list:list = [item_id,name,age,email]

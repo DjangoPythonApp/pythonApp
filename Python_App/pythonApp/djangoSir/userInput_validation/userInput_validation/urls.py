@@ -1,5 +1,5 @@
 """
-URL configuration for userInput_2 project.
+URL configuration for userInput_validation project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/6.0/topics/http/urls/
@@ -16,10 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from userInput_2 import views
+from .views import index
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.index,name='index'),
-    path('edit/<int:item_id>/',views.edit,name='edit'),
-    path('delete/<int:item_id>/', views.delete, name='delete')
+    path('', index, name='index')
+
 ]
