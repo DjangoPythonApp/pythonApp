@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>String Replace</title>
+</head>
+<body class="bg-light">
+
+    <div class="container mt-5">
+
+        <div class="card shadow p-4 mx-auto" style="max-width: 600px;">
+
+            <h1 class="text-center text-primary mb-4">
+                String Replace
+            </h1>
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                <!-- Name -->
+                <div class="mb-3">
+                    <label class="form-label">
+                        Enter the name
+                    </label>
+
+                 
+                    <input 
+                        type="text"
+                        name="name"
+                        class="form-control"
+                        placeholder="Enter text..."
+
+                    >
+                   
+                </div>
+
+                <!-- Old Character -->
+                <div class="mb-3">
+                    <label class="form-label">
+                        Old Value
+                    </label>
+
+                    <input 
+                        type="text"
+                        name="old"
+                        class="form-control"
+                        placeholder="Enter old value..."
+                    >
+                </div>
+
+                <!-- New Character -->
+                <div class="mb-3">
+                    <label class="form-label">
+                        New Value
+                    </label>
+
+                    <input 
+                        type="text"
+                        name="new"
+                        class="form-control"
+                        placeholder="Enter new value..."
+                    >
+                </div>
+
+                <!-- Message -->
+                {% if message %}
+                <div class="alert alert-warning">
+                    {{ message }}
+                </div>
+                {% endif %}
+
+                <!-- Button -->
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">
+                        Replace
+                    </button>
+                </div>
+
+            </form>
+
+            <!-- Original Output -->
+            {% if display %}
+            <div class="alert alert-info mt-4">
+                <h5>Original String:</h5>
+                <p>{{ display }}</p>
+            </div>
+            {% endif %}
+
+            <!-- Final Output -->
+            {% if final_display %}
+            <div class="alert alert-success mt-3">
+                <h5>Updated String:</h5>
+                <p>{{ final_display }}</p>
+            </div>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</body>
+</html>

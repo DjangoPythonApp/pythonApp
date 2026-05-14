@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>lstrip & rstrip() </title>
+</head>
+<body class="bg-light">
+
+    <div class="container mt-5">
+
+        <div class="card shadow p-4 mx-auto" style="max-width: 500px;">
+
+            <h1 class="text-center text-primary mb-4">lstrip & rstrip() </h1>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label for="username" class="form-label">
+                        Enter the name:
+                    </label>
+
+                    <input 
+                        type="text" 
+                        name="name" 
+                        class="form-control"
+                        placeholder="Enter the name.."
+                    >
+                </div>
+
+                {% if message %}
+                <div class="alert alert-warning">
+                    {{ message }}
+                </div>
+                {% endif %}
+
+                <div class="d-grid">
+                    <input 
+                        type="submit" 
+                        value="Submit"
+                        class="btn btn-primary"
+                    >
+                </div>
+
+            </form>
+
+            {% if display %}
+            <div class="alert alert-success mt-4 text-center">
+                <h4>{{ display }}</h4>
+            </div>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

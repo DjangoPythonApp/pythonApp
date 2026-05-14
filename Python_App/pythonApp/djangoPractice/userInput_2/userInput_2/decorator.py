@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 def validate_number(view_func):
 
-    def wrapper(request, *args, **kwargs):
+    def wrapper(request):
 
         from .views import item_list
 
@@ -21,6 +21,6 @@ def validate_number(view_func):
 
                     return render(request, 'index.html', context)
 
-        return view_func(request, *args, **kwargs)
+        return view_func(request)
 
     return wrapper

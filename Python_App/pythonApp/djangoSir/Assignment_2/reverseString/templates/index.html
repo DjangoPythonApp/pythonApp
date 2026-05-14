@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>Reverse a String</title>
+</head>
+<body class="bg-light">
+
+    <div class="container py-5">
+
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+
+                <div class="card shadow-lg border-0">
+                    
+                    <div class="card-header bg-primary text-white text-center">
+                        <h2>Reverse a String</h2>
+                    </div>
+
+                    <div class="card-body">
+
+                        <form method="POST">
+                            {% csrf_token %}
+
+                            <div class="mb-3">
+                                <label for="string" class="form-label">
+                                    Enter the String
+                                </label>
+
+                                <input 
+                                    type="text"
+                                    name="name"
+                                    class="form-control"
+                                    placeholder="Enter the string..."
+                                >
+                            </div>
+
+                            <div class="d-grid">
+                                <input 
+                                    type="submit"
+                                    value="Reverse String"
+                                    class="btn btn-primary"
+                                >
+                            </div>
+
+                            {% if error %}
+                            <div class="alert alert-danger mt-3">
+                                {{ error }}
+                            </div>
+                            {% endif %}
+
+                        </form>
+
+                    </div>
+                </div>
+
+                 {% if name and reverseString %}
+                <!-- Result Section -->
+                <div class="card mt-4 shadow-sm border-0">
+
+                    <div class="card-body">
+
+                        {% if name %}
+                        <div class="mb-3">
+                            <h5 class="text-secondary">
+                                Before Reverse:
+                            </h5>
+
+                            <p class="fs-5 fw-bold">
+                                {{ name }}
+                            </p>
+                        </div>
+                        {% endif %}
+
+                        {% if reverseString %}
+                        <div>
+                            <h5 class="text-success">
+                                After Reverse:
+                            </h5>
+
+                            <h5 class="fs-4 fw-bold text-success">
+                                {{ reverseString }}
+                            </h5>
+                        </div>
+                        {% endif %}
+
+                    </div>
+                </div>
+
+                {% endif %}
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
