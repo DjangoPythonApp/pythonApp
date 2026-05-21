@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorting Even & Odd</title>
+
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+    <div class="container mt-5">
+
+        <div class="card shadow p-4">
+
+            <h1 class="text-center text-primary mb-4">
+                Sorting Even & Odd
+            </h1>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label for="data" class="form-label">
+                        Enter the data:
+                    </label>
+
+                    <input 
+                        type="text"
+                        name="data"
+                        id="data"
+                        class="form-control"
+                        placeholder="Enter numbers separated by space"
+                    >
+                </div>
+
+                {% if error %}
+                <div class="alert alert-danger">
+                    {{ error }}
+                </div>
+                {% endif %}
+
+                <div class="d-grid">
+                    <input 
+                        type="submit"
+                        value="Submit"
+                        class="btn btn-primary"
+                    >
+                </div>
+
+            </form>
+
+        </div>
+
+        <!-- Result Section -->
+        <div class="mt-4">
+
+            {% if mainList %}
+            <div class="card mb-3 shadow-sm">
+                <div class="card-body">
+                    <h4 class="text-dark">
+                        Main List:
+                    </h4>
+                    <p class="fs-5">{{ mainList }}</p>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if even %}
+            <div class="card mb-3 shadow-sm border-success">
+                <div class="card-body">
+                    <h4 class="text-success">
+                        Even List:
+                    </h4>
+                    <p class="fs-5">{{ even }}</p>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if odd %}
+            <div class="card shadow-sm border-warning">
+                <div class="card-body">
+                    <h4 class="text-warning">
+                        Odd List:
+                    </h4>
+                    <p class="fs-5">{{ odd }}</p>
+                </div>
+            </div>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
