@@ -42,8 +42,8 @@ class DSA:
 
                  print(k,v)
 
-            print("-"*10)
-            print(self.container)
+            print("-"*40)
+            
 
 
 

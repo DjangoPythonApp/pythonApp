@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
+
 def deco_fun(index:object)->object:
 
-    def wrapper(request:HttpRequest) -> HttpResponse:
+    def wrapper(request:HttpRequest) -> object:
 
         inner_context = {}
         error=''
