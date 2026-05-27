@@ -1,5 +1,5 @@
 """
-URL configuration for student_marks_analyzer project.
+URL configuration for sumValidation project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/6.0/topics/http/urls/
@@ -16,10 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import index, edit, delete
+from .views import index
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',index, name='index'),
-    path('edit/<int:id>/',edit, name='edit'),
-    path('delete/<int:id>/', delete, name='delete')
+    path('', index, name="index")
 ]

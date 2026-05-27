@@ -1,0 +1,13 @@
+2026-05-26 21:25:11,863 - ERROR - Invalid input value:0
+2026-05-26 21:25:11,863 - ERROR - 0 is invalid. Enter exactly a 2-digit number.
+2026-05-26 21:25:17,121 - ERROR - Invalid input value:qqq
+2026-05-26 21:25:17,121 - ERROR - qqq is invalid. Enter exactly a 2-digit number.
+2026-05-26 21:25:21,099 - ERROR - Invalid input value:123
+2026-05-26 21:25:21,100 - ERROR - 123 is invalid. Enter exactly a 2-digit number.
+2026-05-26 21:25:30,270 - ERROR - Invalid input value:123
+2026-05-26 21:25:30,271 - ERROR - 123 is invalid. Enter exactly a 2-digit number.
+2026-05-26 21:25:38,156 - ERROR - Invalid input value:qq
+2026-05-26 21:25:38,156 - ERROR - qq is invalid. Enter exactly a 2-digit number.
+2026-05-26 21:25:43,402 - INFO - user entered the values
+2026-05-26 21:25:43,402 - INFO - Validation succesfull: x = 12 and y = 12
+2026-05-26 21:25:43,402 - INFO - calculated succesfully 12 + 12 = 24

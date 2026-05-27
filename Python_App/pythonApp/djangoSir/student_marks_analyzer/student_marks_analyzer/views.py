@@ -63,6 +63,7 @@ def index(request:HttpRequest,fullName,marks) -> HttpResponse:
 
 def edit(request:HttpRequest, id) -> HttpResponse:
 
+
     print(id)
    
 
@@ -124,3 +125,31 @@ def edit(request:HttpRequest, id) -> HttpResponse:
 
 
     return render(request,'edit.html',context)
+
+
+
+
+
+
+def delete(request:HttpRequest, id) ->HttpResponse:
+
+    print("Deleted id:",id)
+
+    for i in range(len(context['data'])):
+
+        if context['data'][i]['id'] == id:
+
+            del context['data'][i]
+            break
+
+    pos = 1
+
+    for i in range(len(context['data'])):
+
+        context['data'][i]['id'] = pos
+        pos+=1
+
+    return redirect('index')
+
+
+   
