@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Edit Category</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label>Name</label>
+            <input type="text" name="name" value="{{ category.name }}" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label>Description</label>
+            <textarea name="description" class="form-control">{{ category.description }}</textarea>
+        </div>
+
+     <div class="mb-3">
+    <label>Quantity</label>
+
+    <select name="quantity" class="form-control">
+        {% for i in qty_range %}
+            <option value="{{ i }}">{{ i }}</option>
+        {% endfor %}
+    </select>
+</div>
+
+        <button type="submit" class="btn btn-success">Update</button>
+    </form>
+
+{% endblock %}

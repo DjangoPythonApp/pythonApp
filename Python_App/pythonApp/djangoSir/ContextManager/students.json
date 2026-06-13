@@ -1,0 +1,12 @@
+[
+    {
+        "roll": 1,
+        "name": "Amit Das",
+        "course": "Python"
+    },
+    {
+        "roll": 2,
+        "name": "Sumit Roy",
+        "course": "Java"
+    }
+]

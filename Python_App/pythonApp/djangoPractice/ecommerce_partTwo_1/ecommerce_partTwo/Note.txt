@@ -1,0 +1,7 @@
+django-admin startproject ecommerce
+cd ecommerce
+python manage.py startapp category
+
+--------------------------
+python manage.py makemigrations
+python manage.py migrate
