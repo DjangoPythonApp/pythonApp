@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Person Form</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+
+            <div class="card shadow border-0">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">
+                        {% if person %}
+                            Update Person
+                        {% else %}
+                            Add Person
+                        {% endif %}
+                    </h3>
+                </div>
+
+                <div class="card-body">
+
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <!-- Name -->
+                        <div class="mb-3">
+                            <label for="id_name" class="form-label">Name</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="id_name"
+                                name="name"
+                                value="{{ person.name|default:'' }}"
+                                placeholder="Enter name">
+                        </div>
+
+                        <!-- Age -->
+                        <div class="mb-3">
+                            <label for="id_age" class="form-label">Age</label>
+                            <input
+                                type="number"
+                                class="form-control"
+                                id="id_age"
+                                name="age"
+                                value="{{ person.age|default:'' }}"
+                                placeholder="Enter age">
+                        </div>
+
+                        <!-- Address -->
+                        <div class="mb-3">
+                            <label for="id_address" class="form-label">Address</label>
+                            <textarea
+                                class="form-control"
+                                id="id_address"
+                                name="address"
+                                rows="3"
+                                placeholder="Enter address">{{ person.address|default:'' }}</textarea>
+                        </div>
+
+                        <!-- Course -->
+                        <div class="mb-3">
+                            <label for="id_course_enrolled" class="form-label">Course</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="id_course_enrolled"
+                                name="course_enrolled"
+                                value="{{ person.course_enrolled|default:'' }}"
+                                placeholder="Enter course">
+                        </div>
+
+                        <!-- Image -->
+                        <div class="mb-4">
+                            <label for="id_image" class="form-label">Upload Image</label>
+                            <input
+                                type="file"
+                                class="form-control"
+                                id="id_image"
+                                name="image">
+
+                            {% if person.image %}
+                            <div class="mt-3">
+                                <img src="{{ person.image.url }}"
+                                     alt="Person Image"
+                                     class="img-thumbnail"
+                                     width="150">
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-success">
+                                Save
+                            </button>
+
+                            <a href="{% url 'person_list' %}" class="btn btn-secondary">
+                                Back
+                            </a>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
