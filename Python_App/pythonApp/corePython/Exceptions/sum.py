@@ -1,9 +1,10 @@
 import logging
-import re
-from decorator import deco_fun, validation
+
+from decorator import deco_fun
+
 
 logging.basicConfig(
-    filename="my_log",
+    filename="my_log.log",
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s"
 )
@@ -11,68 +12,43 @@ logging.basicConfig(
 
 class Calculate:
 
-    def __init__(self,value,value2):
+    def __init__(self, value, value2):
 
         self.x = value
         self.y = value2
         self.total = 0
 
-
-    
-
-
-          
-
-
-    @deco_fun
     def sum1(self) -> None:
 
-        self.total:int = int(self.x) + int(self.y)
+        self.total = int(self.x) + int(self.y)
 
-        logging.info(f'calculated succesfully {self.x} + {self.y} = {self.total}')
-        print("The sum is:",self.total)
-        
+        logging.info(
+            f'Calculated successfully {self.x} + {self.y} = {self.total}'
+        )
 
-
-
-def main():
-
-    try:
-
-      value:str = input("Enter the 1st value:")
+        print("The sum is:", self.total)
 
 
-      validation(value)
+@deco_fun
+def main(value, value2):
 
-      value2:str = input("Enter the 2nd value:")
+    obj: Calculate = Calculate(value, value2)
 
-      validation(value2)
-
-      logging.info('user entered the values')
-      
-      obj: Calculate = Calculate(value,value2)
-
-      obj.sum1()
+    obj.sum1()
 
 
-    except ValueError as e:
+try:
 
-         print("Error:", e)
-
-         logging.error(str(e))
-
-
-    except Exception as e:
-
-        print("Error:", e)
-
-        logging.error(str(e))
-
-
-if __name__ == '__main__':
-
-    
     main()
 
+except ValueError as e:
 
+    print("Error:", e)
 
+    logging.error(str(e))
+
+except Exception as e:
+
+    print("Unexpected Error:", e)
+
+    logging.error(str(e))

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Category List</h2>
+
+<a href="/category/add/" class="btn btn-primary mb-3">Add Category</a>
+
+    <table class="table table-bordered">
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+
+        {% for cat in categories %}
+        <tr>
+            <td>{{ cat.name }}</td>
+            <td>{{ cat.description }}</td>
+            <td>
+                <a href="/category/edit/{{ cat.id }}/" class="btn btn-warning btn-sm">Edit</a>
+                <a href="/category/delete/{{ cat.id }}/" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

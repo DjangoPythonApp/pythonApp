@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link 
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+        rel="stylesheet"
+    >
+
+    <title>  mᵗʰ power of a Fuzzy set</title>
+</head>
+
+<body class="bg-light">
+
+    <div class="container mt-5">
+
+        <div class="card shadow p-4">
+
+            <h1 class="text-center mb-4">
+                mᵗʰ power of a Fuzzy set
+
+
+            </h1>
+
+            <!-- First Form -->
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Enter the number of elements for Set A
+                    </label>
+
+                    <input 
+                        type="number"
+                        name="num"
+                        class="form-control"
+                        placeholder="Enter number..."
+                    >
+                    <div class="d-grid p-2">
+                            <button class="btn btn-primary">
+                                Create Inputs
+                            </button>
+                        </div>
+
+
+                </div>
+            </form>
+
+                
+
+            {% if n  %}
+
+            <hr>
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                <input type="hidden" name="num" value="{{ n }}">
+                
+
+                <!-- Set A -->
+
+                <h4 class="mt-3 mb-3">
+                    Enter Set A Values
+                </h4>
+
+                {% for i in ""|center:n %}
+
+                <div class="row mb-3">
+
+                    <div class="col-md-6">
+
+                        <input 
+                            type="text"
+                            name="ae{{ forloop.counter0 }}"
+                            class="form-control"
+                            placeholder="Element A{{ forloop.counter }}"
+                        >
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <input 
+                            type="text"
+                            name="am{{ forloop.counter0 }}"
+                            class="form-control"
+                            placeholder="Membership A{{ forloop.counter }}"
+                        >
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+                <div class="d-grid mt-4">
+                            <button class="btn btn-success">
+                                Submit
+                            </button>
+                        </div>
+
+
+            </form>
+
+            {% endif %}
+
+
+            <!-- Result -->
+
+            {% if dict_A %}
+
+            <div class="alert alert-info mt-4">
+                
+                 <h4 class=" mb-4">
+                    Fuzzy set
+                 </h4>
+            <p> {{ dict_A }} </p>
+            </div>
+
+            {% endif %}
+
+
+
+             {% if dict_B %}
+
+            <div class="alert alert-info mt-4">
+
+               <h4 class=" mb-4">
+                    power set
+                 </h4>
+                    <p> {{ dict_B }}</p>
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</body>
+</html>

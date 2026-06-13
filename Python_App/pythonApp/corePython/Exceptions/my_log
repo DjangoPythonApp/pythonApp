@@ -11,3 +11,6 @@
 2026-05-26 21:25:43,402 - INFO - user entered the values
 2026-05-26 21:25:43,402 - INFO - Validation succesfull: x = 12 and y = 12
 2026-05-26 21:25:43,402 - INFO - calculated succesfully 12 + 12 = 24
+2026-05-28 22:37:28,598 - INFO - User entered the values
+2026-05-28 22:37:28,598 - ERROR - Invalid input value: wwww
+2026-05-28 22:37:28,599 - ERROR - wwww is invalid. Enter exactly a 2-digit number.

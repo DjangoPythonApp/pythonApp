@@ -2,6 +2,9 @@ class SMS:
     def __init__(self)->None:
         self.data:list = []
         self.subjects:list = []
+        
+
+
 
     def InsertStudentData(self) -> None:
 
@@ -90,9 +93,6 @@ class SMS:
 
                         self.subjects[j]['marks'] = input(f'Enter the new subject {self.subjects[j]['subject']} marks:')
                         print("="*30,"updated succesfully","="*30)
-
-
-
 
 
 

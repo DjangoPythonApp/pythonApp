@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link 
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+        rel="stylesheet"
+    >
+
+    <title>algebraic / probabilistic sum of two fuzzy set</title>
+</head>
+
+<body class="bg-light">
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8">
+
+            <div class="card shadow-lg border-0 rounded-4">
+
+                <div class="card-body p-4">
+
+                    <h1 class="text-center mb-4 text-primary">
+                        algebraic / probabilistic sum of two fuzzy set
+                    </h1>
+
+                    <!-- First Form -->
+
+                    <form method="POST">
+
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+
+                            <label class="form-label fw-semibold">
+                                Enter the number of elements for Set A
+                            </label>
+
+                            <input 
+                                type="number"
+                                name="num"
+                                class="form-control"
+                                placeholder="Enter number..."
+                                required
+                            >
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label fw-semibold">
+                                Enter the number of elements for Set B
+                            </label>
+
+                            <input 
+                                type="number"
+                                name="num2"
+                                class="form-control"
+                                placeholder="Enter number..."
+                                required
+                            >
+
+                        </div>
+
+                        <div class="d-grid">
+                            <button class="btn btn-primary">
+                                Create Inputs
+                            </button>
+                        </div>
+
+                    </form>
+
+
+                    <!-- Second Form -->
+
+                    {% if n and n2 %}
+
+                    <hr class="my-4">
+
+                    <form method="POST">
+
+                        {% csrf_token %}
+
+                        <input type="hidden" name="num" value="{{ n }}">
+                        <input type="hidden" name="num2" value="{{ n2 }}">
+
+                        <!-- Set A -->
+
+                        <h4 class="mb-3 text-success">
+                            Enter Set A Values
+                        </h4>
+
+                        {% for i in ""|center:n %}
+
+                        <div class="row g-3 mb-3">
+
+                            <div class="col-md-6">
+
+                                <input 
+                                    type="text"
+                                    name="ae{{ forloop.counter0 }}"
+                                    class="form-control"
+                                    placeholder="Element A{{ forloop.counter }}"
+                                    required
+                                >
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <input 
+                                    type="text"
+                                    name="am{{ forloop.counter0 }}"
+                                    class="form-control"
+                                    placeholder="Membership A{{ forloop.counter }}"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+                        {% endfor %}
+
+
+                        <!-- Set B -->
+
+                        <h4 class="mt-4 mb-3 text-success">
+                            Enter Set B Values
+                        </h4>
+
+                        {% for i in ""|center:n2 %}
+
+                        <div class="row g-3 mb-3">
+
+                            <div class="col-md-6">
+
+                                <input 
+                                    type="text"
+                                    name="be{{ forloop.counter0 }}"
+                                    class="form-control"
+                                    placeholder="Element B{{ forloop.counter }}"
+                                    required
+                                >
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <input 
+                                    type="text"
+                                    name="bm{{ forloop.counter0 }}"
+                                    class="form-control"
+                                    placeholder="Membership B{{ forloop.counter }}"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+                        {% endfor %}
+
+                        <div class="d-grid mt-4">
+                            <button class="btn btn-success">
+                                Check Subset
+                            </button>
+                        </div>
+
+                    </form>
+
+                    {% endif %}
+
+
+                    <!-- Results -->
+
+                    {% if dict_A %}
+
+                    <hr class="my-4">
+
+                    <div class="alert alert-primary">
+
+                        <h4 class="mb-2">
+                            Fuzzy Set A
+                        </h4>
+
+                        <p class="mb-0">
+                            {{ dict_A }}
+                        </p>
+
+                    </div>
+
+                    {% endif %}
+
+
+                    {% if dict_B %}
+
+                    <div class="alert alert-warning">
+
+                        <h4 class="mb-2">
+                            Fuzzy Set B
+                        </h4>
+
+                        <p class="mb-0">
+                            {{ dict_B }}
+                        </p>
+
+                    </div>
+
+                    {% endif %}
+
+
+                    {% if dict_C %}
+
+                    <div class="alert alert-success">
+
+                        <h4 class="mb-2">
+                            algebraic / probabilistic sum of two fuzzy set
+                        </h4>
+
+                        <p class="mb-0">
+                            {{ dict_C }}
+                        </p>
+
+                    </div>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

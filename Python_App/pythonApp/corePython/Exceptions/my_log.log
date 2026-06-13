@@ -1,0 +1,20 @@
+2026-05-28 22:37:33,864 - ERROR - Invalid input value: www
+2026-05-28 22:37:33,865 - ERROR - www is not valid. Enter exactly a 2-digit number.
+2026-05-28 22:37:44,363 - INFO - User entered valid values
+2026-05-28 22:37:44,364 - INFO - Validation successful: x = 12 and y = 12
+2026-05-28 22:37:44,364 - INFO - Calculated successfully 12 + 12 = 24
+2026-05-28 22:37:55,017 - ERROR - Invalid input value: 1
+2026-05-28 22:37:55,018 - ERROR - 1 is not valid. Enter exactly a 2-digit number.
+2026-05-28 22:38:07,509 - ERROR - Invalid input value: eee
+2026-05-28 22:38:07,509 - ERROR - eee is not valid. Enter exactly a 2-digit number.
+2026-05-28 22:40:28,074 - ERROR - 1 is not valid. Enter exactly a 2-digit number.
+2026-05-28 22:40:33,956 - ERROR - w is not valid. Enter exactly a 2-digit number.
+2026-05-28 22:40:37,176 - ERROR - ww is not valid. Enter exactly a 2-digit number.
+2026-05-28 22:40:45,007 - INFO - Validation successful: x = 12 and y = 12
+2026-05-28 22:40:45,007 - INFO - Calculated successfully 12 + 12 = 24
+2026-05-28 22:43:16,895 - ERROR - Invalid input value: w
+2026-05-28 22:43:16,897 - ERROR - w is not valid. Enter exactly a 2-digit number.
+2026-05-28 22:43:19,353 - ERROR - Invalid input value: ww
+2026-05-28 22:43:19,353 - ERROR - ww is not valid. Enter exactly a 2-digit number.
+2026-05-28 22:43:23,889 - INFO - Validation successful: x = 12 and y = 12
+2026-05-28 22:43:23,889 - INFO - Calculated successfully 12 + 12 = 24
