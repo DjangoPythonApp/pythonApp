@@ -1,0 +1,100 @@
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(100) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role VARCHAR(20) CHECK (role IN ('Buyer', 'Seller', 'Admin')) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE auction_items (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(200) NOT NULL,
+    description TEXT,
+    base_price NUMERIC(10,2) NOT NULL,
+    current_price NUMERIC(10,2),
+    start_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    end_time TIMESTAMP,
+    seller_id INTEGER,
+    
+    CONSTRAINT fk_seller
+        FOREIGN KEY (seller_id)
+        REFERENCES users(id)
+        ON DELETE CASCADE
+);
+#-------------------------------------------------------------------------
+
+Table: users:
+INSERT INTO users (username, email, password, role) VALUES
+('john', 'john@gmail.com', 'john123', 'Buyer'),
+('rahul', 'rahul@gmail.com', 'rahul123', 'Seller'),
+('priya', 'priya@gmail.com', 'priya123', 'Buyer'),
+('admin', 'admin@gmail.com', 'admin123', 'Admin');
+
+INSERT INTO users (username, email, password, role) VALUES ('punam', 'punam@gmail.com', 'punam123', 'Seller');
+INSERT INTO users (username, email, password, role) VALUES ('Jimmy', 'jimmy@gmail.com', 'jimmy123', 'Seller');
+#-------------------------------------------------------------------------
+
+Table: auction_items:
+
+INSERT INTO auction_items(title, description, base_price, current_price, end_time, seller_id) VALUES (
+    'Gaming Laptop', 'Intel i7, RTX 4060, 16GB RAM', 50000.00, 51000.00, '2026-06-20 18:00:00', 2);
+
+INSERT INTO auction_items(title, description, base_price, current_price, end_time, seller_id) VALUES (
+    'iPhone 15', '128GB, Excellent Condition', 60000.00, 62000.00, '2026-06-25 20:00:00', 2);
+
+INSERT INTO auction_items(title, description, base_price, current_price, end_time, seller_id) VALUES (
+    'DJI Drone','4K Camera Drone',35000.00,37000.00,'2026-06-18 16:30:00',2),(
+    'PlayStation 5','PS5 Disc Edition',40000.00,42000.00,'2026-06-30 21:00:00',2);
+
+INSERT INTO auction_items(title, description, base_price, current_price, end_time, seller_id) VALUES (
+    'MacBook Pro', 'M1 Pro, 16GB RAM, 256GB SSD', 80000.00, 82000.00, '2026-06-22 19:00:00', 6);
+
+
+#-------------------------------------------------------------------------
+One-to-Many Relationship:
+    One Seller
+        |
+        + ---- Laptop Auction
+        |
+        + ---- Mobile Auction
+        |
+        + ---- Drone Auction
+so, one user can create many auction items.
+# --------------------------------------------------------------------------
+
+PostgreSQL JOIN Queries: Users and Auction Items
+
+1. Basic INNER JOIN
+SELECT username, title FROM users u INNER JOIN auction_items a ON u.id = a.seller_id;
+
+2. Seller Name and Auction Title
+SELECT u.username, a.title FROM users u JOIN auction_items a ON u.id = a.seller_id;
+Note: There is no difference. JOIN is shorthand for INNER JOIN. Both return only matching rows from the joined tables.
+
+3. Show All Auction Details with Seller
+SELECT a.*, u.username FROM auction_items a JOIN users u ON a.seller_id = u.id;
+
+4. Auctions Posted By Rahul
+SELECT a.* FROM users u JOIN auction_items a ON u.id = a.seller_id WHERE u.username='rahul';
+
+5. Auctions Posted By Sellers Only
+SELECT u.username, a.title FROM users u JOIN auction_items a ON u.id = a.seller_id WHERE u.role='Seller';
+
+6. LEFT JOIN
+SELECT u.username, a.title FROM users u LEFT JOIN auction_items a ON u.id = a.seller_id;
+Note: "Give me all users, whether they have auctions or not."
+
+7. Users Without Auctions
+SELECT u.* FROM users u LEFT JOIN auction_items a ON u.id = a.seller_id WHERE a.id IS NULL;
+Note: Keep only those rows where no auction was found.
+
+8. Count Auctions Per User
+SELECT u.username, COUNT(a.id) FROM users u LEFT JOIN auction_items a ON u.id = a.seller_id GROUP BY u.username;
+
+9. Count Auctions Per Seller
+SELECT u.username, COUNT(a.id) AS total_auctions FROM users u JOIN auction_items a ON u.id = a.seller_id GROUP BY u.username;
+
+10. Sellers With More Than One Auction
+SELECT u.username, COUNT(a.id) FROM users u JOIN auction_items a ON u.id = a.seller_id GROUP BY u.username HAVING COUNT(a.id) > 1;

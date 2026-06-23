@@ -49,7 +49,7 @@ print(square)
 
 # -----------------------
 # 7. Nested List Comprehension
-
+#Flattening a nested list
 matrix = [
     [1, 2, 3],
     [4, 5, 6],

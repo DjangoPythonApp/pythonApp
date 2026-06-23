@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+<body>
+    <h1>All students data</h1>
+    <a href="{% url 'form' %}">Add new student</a>
+
+    <ul>
+        {% for s in students %}
+        <li>
+            <a href="{% url 'student_details' s.pk}">{{ s.name }} - {{ s.email }} - {{ s.age }}
+        </li>
+</body>
+</html>
