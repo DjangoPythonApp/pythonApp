@@ -11,17 +11,11 @@ class VehicleLogAuditor:
         self.rejected_records = []
 
 
-
     def validate_vehicle(self, vehicle_no):
-
         pattern = r"^WB\d{2}[A-Z]{2}\d{4}$"
-    
         if re.match(pattern, vehicle_no):
             return True
-    
         return False
-
-
 
     def validate_device(self, device):
 
@@ -31,8 +25,6 @@ class VehicleLogAuditor:
             return True
     
         return False
-
-
 
     def validate_time(self, scan_time):
 
@@ -45,38 +37,27 @@ class VehicleLogAuditor:
             return False
 
 
-
-
     def read_file(self, filename):
-
-         with open(filename, "r") as file:
-     
-             reader = csv.DictReader(file)
-     
-             for row in reader:
-     
-                 vehicle = row["vehicle_no"]
-                 device = row["security_device"]
-                 scan_time = row["scan_time"]
-     
-                 if not self.validate_vehicle(vehicle):
-                     self.rejected_records.append(row)
-                     continue
-     
-                 if not self.validate_device(device):
-                     self.rejected_records.append(row)
-                     continue
-     
-                 if not self.validate_time(scan_time):
-                     self.rejected_records.append(row)
-                     continue
-     
-                 self.clean_records.append(row)
-
-
-
-
-
+        with open(filename, "r") as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                vehicle = row["vehicle_no"]
+                device = row["security_device"]
+                scan_time = row["scan_time"]
+    
+                if not self.validate_vehicle(vehicle):
+                    self.rejected_records.append(row)
+                    continue
+    
+                if not self.validate_device(device):
+                    self.rejected_records.append(row)
+                    continue
+    
+                if not self.validate_time(scan_time):
+                    self.rejected_records.append(row)
+                    continue
+    
+                self.clean_records.append(row)
 
     def find_duplicates(self):
 
@@ -120,9 +101,6 @@ class VehicleLogAuditor:
             if not duplicate:
                 checked.append(record)
 
-
-
-
     def find_suspicious(self):
 
          for i in range(len(self.clean_records)):
@@ -154,9 +132,6 @@ class VehicleLogAuditor:
                          if minutes <= 30:
      
                              self.suspicious_records.append(r2)
-
-
-
 
     def generate_report(self):
     
@@ -198,8 +173,6 @@ class VehicleLogAuditor:
         print("audit_summary.txt generated successfully")
 
 
-
-
     def save_clean_records(self):
 
          with open("clean_records.csv", "w", newline="") as file:
@@ -234,18 +207,14 @@ class VehicleLogAuditor:
          print("rejected_records.csv created successfully")
 
 
-
 def main():
     auditor = VehicleLogAuditor()
-
     auditor.read_file("raw_vehicle_logs.csv")
-    
     auditor.find_duplicates()
-    
     auditor.find_suspicious()
-    
     auditor.generate_report()
     auditor.save_clean_records()
     auditor.save_rejected_records()
+
 if __name__ == "__main__":
     main()

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h1>Sum of Two Numbers</h1>
+    <form id="sumForm" method="post" >
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="num1">Number 1:</label>
+            <input type="number" class="form-control" id="num1" name="num1" required>
+        </div>
+        <div class="form-group">
+            <label for="num2">Number 2:</label>
+            <input type="number" class="form-control" id="num2" name="num2" required>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3" id="calculateSum">Calculate Sum</button>
+    </form>
+    <div id="result" class="mt-4"></div>
+                    {% if result %}
+                    <div class="alert alert-success mt-3" role="alert">
+                        Result: <strong>{{ result }}</strong>
+                    </div>
+                    {% endif %}
+                </div>
+</div>
+{% endblock %}

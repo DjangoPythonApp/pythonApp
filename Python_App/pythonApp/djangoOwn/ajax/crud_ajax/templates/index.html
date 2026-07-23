@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+ {% block title %}index page{% endblock title %}
+ {% block content %} 
+ <div class="container mt-5">
+    <h2 class="text-center alert alert-danger">Django CRUD operations</h2>
+
+    <div class='row'>
+        <div class='col-sm-4'>
+            <h4 class="text-center alert alert-info">Add/Update Student</h4>
+ <form action="" method='POST'>
+ {% csrf_token %}
+{{ form.as_p }}
+ </form>
+ <input type="button" class="btn btn-success" id='btnsave' value='Save'>
+</div>
+</div>
+ {% endblock content %}

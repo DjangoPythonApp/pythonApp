@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Category List</h2>
+
+<a href="/category/add/" class="btn btn-primary mb-3"> Add Category</a>
+
+<!-- CSRF TOKEN required for AJAX requests -->
+{% csrf_token %}
+
+<table class="table table-bordered">
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Actions</th>
+    </tr>
+    {% for cat in categories %}
+        <tr>
+            <td>{{ cat.name }}</td>
+            <td>{{ cat.description }}</td>
+            <td>
+                <a href="{% url 'edit_category' cat.id %}" class="btn btn-warning btn-sm">Edit</a>
+                <button class="btn btn-danger btn-sm delete-btn" data-id="{{ cat.id }}">Delete</button>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}

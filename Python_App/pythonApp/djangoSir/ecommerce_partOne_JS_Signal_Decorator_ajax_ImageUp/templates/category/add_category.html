@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Add Category</h2>
+
+    <form method="POST" id="categoryForm" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <input type="hidden" id="category_id" name="category_id" value="{{ category.id }}">
+        
+        <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input type="text" id="name" name="name" class="form-control"  value="{{ category.name }}">
+            <div id="errorName" class="text-danger small mt-1"></div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Description</label>
+            <textarea id="description" name="description" class="form-control">{{ category.description }}</textarea>
+            <div id="errorDescription" class="text-danger small mt-1"></div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Image:</label>
+            <input type="file" class="form-control" id="category_image" name="category_image" accept="image/*">
+            <img id="imagePreview" src="" alt="Preview" style="max-width: 100px; display: none; margin-top: 5px;">
+            <div id="image_error"></div>
+        </div>
+
+        <button type="submit" class="btn btn-success" id="btnRegister">Save</button>
+    </form>
+
+    <div id="acknowledge" class="mt-3"></div>
+
+{% endblock %}

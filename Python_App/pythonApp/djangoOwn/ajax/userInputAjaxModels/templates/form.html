@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}Form{% endblock %}
+
+{% block content %}
+    <h1>Form Page</h1>
+    <form method="post">
+        {% csrf_token %}
+         <input type="hidden" id="category_id" name="category_id" value="{{ category.id }}">
+
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" value="{{ category.name }}">
+            <small id="errorName" class="text-danger"></small>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" value="{{ category.email }}">
+            <small id="errorEmail" class="text-danger"></small>
+        </div>
+        <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" class="form-control" id="address" value="{{ category.address }}">
+            <small id="errorAddress" class="text-danger"></small>
+        </div>
+        <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" class="form-control" id="age" value="{{ category.age }}">
+            <small id="errorAge" class="text-danger"></small>
+        </div>
+        <button type="submit" class="btn btn-primary" id="submit-btn">Submit</button>
+    </form>
+     <div id="acknowledge" class="mt-3"></div>
+    <div>
+        <table class="table table-striped mt-4">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Age</th>
+                </tr>
+            </thead>
+            <tbody id="data-table-body">
+              {% for cat in categories %}
+        <tr>
+            <td>{{ cat.name }}</td>
+            <td>{{ cat.email }}</td>
+            <td>{{ cat.address }}</td>
+            <td>{{ cat.age }}</td>
+            <td>
+                <a href="{% url 'edit_category' cat.id %}" class="btn btn-warning btn-sm">Edit</a>
+                <button class="btn btn-danger btn-sm delete-btn" data-id="{{ cat.id }}">Delete</button>
+            </td>
+        </tr>
+    {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

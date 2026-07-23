@@ -1,0 +1,82 @@
+from django.db.models import Count, Sum
+from django.utils import timezone
+
+class User(models.Model):
+    username = models.CharField(max_length=100)
+    email = models.EmailField(unique=True)
+    password = models.CharField(max_length=255)
+    role = models.CharField(max_length=20)
+
+class AuctionItem(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    base_price = models.DecimalField(max_digits=10, decimal_places=2)
+    current_price = models.DecimalField(max_digits=10, decimal_places=2)
+    start_time = models.DateTimeField(auto_now_add=True)
+    end_time = models.DateTimeField()
+    seller = models.ForeignKey(User, on_delete=models.CASCADE)
+
+....................................................
+
+# 1. Basic INNER JOIN
+AuctionItem.objects.select_related('seller').values('seller__username', 'title')
+
+# 2. Seller Name and Auction Title
+AuctionItem.objects.select_related('seller').values('seller__username', 'title')
+
+# 3. Show All Auction Details with Seller
+AuctionItem.objects.select_related('seller').values('id','title','description','base_price','current_price','start_time','end_time','seller__username')
+
+# 4. Auctions Posted By Rahul
+AuctionItem.objects.filter(seller__username='rahul')
+
+# 5. Auctions Posted By Sellers Only
+AuctionItem.objects.filter(seller__role='Seller').values('seller__username','title')
+
+# 6. LEFT JOIN
+User.objects.values('username','auctionitem__title')
+
+# 7. Users Without Auctions
+User.objects.filter(auctionitem__isnull=True)
+
+# 8. Count Auctions Per User
+User.objects.annotate(total_auctions=Count('auctionitem')).values('username','total_auctions')
+
+# 9. Count Auctions Per Seller
+User.objects.filter(auctionitem__isnull=False).annotate(total_auctions=Count('auctionitem')).values('username','total_auctions')
+
+# 10. Sellers With More Than One Auction
+User.objects.annotate(total_auctions=Count('auctionitem')).filter(total_auctions__gt=1).values('username','total_auctions')
+
+# 11. Total Value of Auctions Per Seller
+User.objects.annotate(total_value=Sum('auctionitem__current_price')).values('username','total_value')
+
+# 12. Seller With Highest Auction
+AuctionItem.objects.select_related('seller').order_by('-current_price').values('seller__username','title','current_price').first()
+
+# 13. Latest Auction With Seller
+AuctionItem.objects.select_related('seller').order_by('-start_time').values('seller__username', 'title', 'start_time').first()
+
+# 14. Active Auctions
+AuctionItem.objects.filter(end_time__gt=timezone.now()).values('seller__username', 'title')
+
+# 15. Find Auctions Between Prices
+AuctionItem.objects.filter(current_price__range=(40000, 50000)).values('seller__username', 'title', 'current_price')
+
+# 16. Sellers Starting With 'r'
+AuctionItem.objects.filter(seller__username__startswith='r').values('seller__username', 'title')
+
+# 17. Auction Titles Containing "Phone"
+AuctionItem.objects.filter(title__icontains='Phone').values('seller__username', 'title')
+
+# 18. Show Seller Name and Total Number of Auctions
+User.objects.annotate(total_auctions=Count('auctionitem')).values('username', 'total_auctions').order_by('-total_auctions')
+
+# 19. Find Sellers Who Have Never Created Any Auction
+User.objects.filter(auctionitem__isnull=True).values('id', 'username')
+
+# 20. Find the Seller Who Has Created the Most Auctions
+User.objects.annotate(total_auctions=Count('auctionitem')).order_by('-total_auctions').values('username', 'total_auctions').first()
+
+# 21. Find Sellers Whose Total Auction Value Exceeds
+User.objects.annotate(total_value=Sum('auctionitem__current_price')).filter(total_value__gt=100000).values('username', 'total_value')
